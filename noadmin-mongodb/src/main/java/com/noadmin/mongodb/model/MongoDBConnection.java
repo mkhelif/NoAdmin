@@ -1,10 +1,12 @@
 package com.noadmin.mongodb.model;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.mongodb.DB;
 import com.mongodb.Mongo;
+import com.mongodb.MongoException;
 import com.mongodb.MongoOptions;
 import com.noadmin.model.connection.AbstractConnection;
 
@@ -34,7 +36,7 @@ public final class MongoDBConnection extends AbstractConnection {
 	 * @see fr.mkhelif.noadmin.model.connection.AbstractConnection#doConnect()
 	 */
 	@Override
-	protected void doConnect() throws Exception {
+	protected void doConnect() throws UnknownHostException, MongoException {
 		mongo = new Mongo(getHostname(), getPort());
 	}
 
@@ -42,7 +44,7 @@ public final class MongoDBConnection extends AbstractConnection {
 	 * @see fr.mkhelif.noadmin.model.connection.AbstractConnection#doDisconnect()
 	 */
 	@Override
-	protected void doDisconnect() throws Exception {
+	protected void doDisconnect() {
 		mongo.close();
 		mongo = null;
 		databases = null;

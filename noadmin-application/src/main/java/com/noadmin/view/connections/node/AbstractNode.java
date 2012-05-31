@@ -22,7 +22,7 @@ public abstract class AbstractNode<T> extends DefaultMutableTreeNode {
 	/**
 	 * The icon manager instance.
 	 */
-	protected final IconManager manager;
+	private final IconManager manager;
 
 	/**
 	 * Create a new node attached to the element.
@@ -56,6 +56,15 @@ public abstract class AbstractNode<T> extends DefaultMutableTreeNode {
 	 * @return the icon to display for this node.
 	 */
 	public abstract Icon getIcon();
+
+	/**
+	 * Load an icon from the class path.
+	 * @param name the name of the icon to load.
+	 * @return the loaded icon or null if not found.
+	 */
+	protected final Icon loadIcon(final String name) {
+		return manager.getIcon(name);
+	}
 
 	/**
 	 * Add the menu actions concerning this node type to the contextual

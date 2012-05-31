@@ -75,6 +75,7 @@ public final class ConnectionPanel extends AbstractConnectionPanel<MongoDBConnec
 	 */
 	@Override
 	protected void update() {
+		final MongoDBConnection connection = this.getConnection();
 		version.setText(connection.getVersion());
 		maxBsonObjectSize.setText(Integer.toString(connection.getMaxBsonObjectSize()));
 		replicaSetStatus.setText(connection.getReplicaSetStatus());

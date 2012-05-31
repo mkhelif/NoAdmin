@@ -1,6 +1,7 @@
 package com.noadmin.mongodb.content.collection;
 
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,6 +90,8 @@ public final class CollectionPanel extends AbstractElementPanel<Collection> impl
 	}
 
 	/**
+	 * TODO review this method to simplify.
+	 *
 	 * Update the selection related actions.
 	 * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing.event.ListSelectionEvent)
 	 */
@@ -96,15 +99,24 @@ public final class CollectionPanel extends AbstractElementPanel<Collection> impl
 	public void valueChanged(final ListSelectionEvent e) {
 		final int[] rows = tree.getSelectedRows();
 
-		boolean onlyFields = rows.length > 1;
 		final List<DBObject> documents = new ArrayList<>();
 		final Map<DBObject, List<String>> entries = new HashMap<>();
 		for (final int row : rows) {
 			final DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) tree.getPathForRow(row).getLastPathComponent();
 
 			if (node.getUserObject() instanceof DBObject) {
-				documents.add((DBObject) node.getUserObject());
-				onlyFields = false;
+				if (tree.getTreeTableModel().getRoot() == node) {
+					documents.add((DBObject) node.getUserObject());
+				} else {
+					final DefaultMutableTreeTableNode parentNode = (DefaultMutableTreeTableNode) node.getParent();
+					final DBObject parent = (DBObject) parentNode.getUserObject();
+					final String name = ((DBObject) node.getUserObject()).getName();
+
+					if (!entries.containsKey(parent)) {
+						entries.put(parent, new ArrayList<String>());
+					}
+					entries.get(parent).add(name);
+				}
 			} else if (node.getUserObject() instanceof DBObjectList) {
 				// TODO
 			} else if (node.getUserObject() instanceof DBReference) {
@@ -121,13 +133,19 @@ public final class CollectionPanel extends AbstractElementPanel<Collection> impl
 				}
 			}
 		}
-
 		RemoveFieldAction.getInstance().setEntries(entries);
 
-		this.registerKeyboardAction(
-			(onlyFields ? RemoveFieldAction.getInstance() : RemoveDocumentAction.getInstance()),
-			KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0),
-			JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT
-		);
+		// Bind the best action to Delete key
+		final ActionListener action;
+		if (RemoveFieldAction.getInstance().isEnabled()) {
+			action = RemoveFieldAction.getInstance();
+		} else if (RemoveDocumentAction.getInstance().isEnabled()) {
+			action = RemoveDocumentAction.getInstance();
+		} else {
+			action = null;
+		}
+		if (action != null) {
+			this.registerKeyboardAction(action, KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		}
 	}
 }

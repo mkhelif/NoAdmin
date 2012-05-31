@@ -28,7 +28,7 @@ public final class AddCollectionDialog extends SimpleDialog {
 	/**
 	 * The internationalization messages manager.
 	 */
-	protected final DefaultMessageSource i18n;
+	private final DefaultMessageSource i18n;
 
 	/**
 	 * The name of the new collection.

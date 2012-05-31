@@ -12,19 +12,19 @@ public interface DBObjectListener {
 	 * @param object the parent document.
 	 * @param field the updated field.
 	 */
-	public void fieldUpdated(final DBObject object, final String field);
+	void fieldUpdated(final DBObject object, final String field);
 
 	/**
 	 * A new field has been added to the document.
 	 * @param object the parent document.
 	 * @param field the new field name.
 	 */
-	public void fieldAdded(final DBObject object, final String field);
+	void fieldAdded(final DBObject object, final String field);
 
 	/**
 	 * A field has been removed from the document.
 	 * @param object the parent document.
 	 * @param field the removed field.
 	 */
-	public void fieldRemoved(final DBObject object, final String field);
+	void fieldRemoved(final DBObject object, final String field);
 }

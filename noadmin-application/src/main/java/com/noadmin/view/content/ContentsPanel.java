@@ -55,7 +55,7 @@ public final class ContentsPanel extends JPanel implements TreeSelectionListener
 	 * @param evt the event that changes the tree selection.
 	 */
 	@Override
-	public final void valueChanged(final TreeSelectionEvent evt) {
+	public void valueChanged(final TreeSelectionEvent evt) {
 		// Ignore empty selection
 		final ConnectionsTree tree = (ConnectionsTree) evt.getSource();
 		final TreePath[] paths = tree.getSelectionPaths();

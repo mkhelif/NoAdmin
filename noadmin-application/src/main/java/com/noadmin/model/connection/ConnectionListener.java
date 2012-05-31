@@ -9,9 +9,9 @@ public interface ConnectionListener {
 
 	/**
 	 * The connection has failed to connect to the database server.
-	 * @param t the received exception.
+	 * @param e the received exception.
 	 */
-	void connectionFailed(final Throwable t);
+	void connectionFailed(final Exception e);
 
 	/**
 	 * The connection is trying to establish.

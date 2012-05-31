@@ -5,10 +5,8 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import com.noadmin.mongodb.model.Collection;
-
 /**
- * Renderer of the {@link Collection} tree..
+ * Renderer of the document type in a collection.
  *
  * @author mkhelif
  */

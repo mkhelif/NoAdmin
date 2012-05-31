@@ -19,8 +19,8 @@ public final class ConnectAction extends AbstractConnectionAction implements Tre
 	/**
 	 * Singleton pattern.
 	 */
-	private static final ConnectAction action = new ConnectAction();
-	public static ConnectAction getInstance() { return action; }
+	private static final ConnectAction INSTANCE = new ConnectAction();
+	public static ConnectAction getInstance() { return INSTANCE; }
 
 	private ConnectAction() {
 		super("action.connection.connect", "connection;connect");
@@ -51,14 +51,14 @@ public final class ConnectAction extends AbstractConnectionAction implements Tre
 
 	@Override
 	public void connectionEstablishing() {
-		handler.cursor(Cursor.WAIT_CURSOR);
-		handler.information("action.connection.connect.start");
+		getGUIHandler().cursor(Cursor.WAIT_CURSOR);
+		getGUIHandler().information("action.connection.connect.start");
 	}
 
 	@Override
 	public void connectionEstablished() {
-		handler.cursor(Cursor.DEFAULT_CURSOR);
-		handler.information("action.connection.connect.done");
+		getGUIHandler().cursor(Cursor.DEFAULT_CURSOR);
+		getGUIHandler().information("action.connection.connect.done");
 		this.setEnabled(false);
 	}
 
@@ -68,9 +68,9 @@ public final class ConnectAction extends AbstractConnectionAction implements Tre
 	}
 
 	@Override
-	public void connectionFailed(final Throwable t) {
-		handler.cursor(Cursor.DEFAULT_CURSOR);
-		handler.alert(t.getMessage());
+	public void connectionFailed(final Exception e) {
+		getGUIHandler().cursor(Cursor.DEFAULT_CURSOR);
+		getGUIHandler().alert(e.getMessage());
 		this.setEnabled(true);
 	}
 }

@@ -13,6 +13,7 @@ import com.noadmin.controller.Controller;
  * @author mkhelif
  */
 public final class Bootstrap {
+	private Bootstrap() {}
 
 	/**
 	 * The Spring configuration context XML.
@@ -23,10 +24,12 @@ public final class Bootstrap {
 	 * Initialize Spring context and start {@link Controller} service.
 	 */
 	public static void main(final String[] args) {
-		// Default settings
+		// Look and feel settings
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (final Exception e) {}
+		} catch (final Exception e) {
+			// Not a problem, use default L&F
+		}
 
 		// Initialize Spring context
 		final ApplicationContext context = new ClassPathXmlApplicationContext(SPRING_CONFIGURATION);

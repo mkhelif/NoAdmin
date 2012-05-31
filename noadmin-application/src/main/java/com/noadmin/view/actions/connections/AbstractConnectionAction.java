@@ -23,7 +23,7 @@ public abstract class AbstractConnectionAction extends DefaultAction implements 
 	/**
 	 * The GUI handler.
 	 */
-	protected final GUIHandler handler;
+	private final GUIHandler handler;
 
 	/**
 	 * The selected connection in the tree.
@@ -79,6 +79,13 @@ public abstract class AbstractConnectionAction extends DefaultAction implements 
 	}
 
 	/**
+	 * @return the GUI handler to display messages.
+	 */
+	protected final GUIHandler getGUIHandler() {
+		return handler;
+	}
+
+	/**
 	 * @param connection the selected connection.
 	 * @return TRUE if the action is enabled for the connection,
 	 *         FALSE otherwise.
@@ -94,7 +101,7 @@ public abstract class AbstractConnectionAction extends DefaultAction implements 
 	 * The connection has failed to connect to the database server.
 	 * @param t the received exception.
 	 */
-	public void connectionFailed(final Throwable t) {}
+	public void connectionFailed(final Exception e) {}
 
 	/**
 	 * The connection is trying to establish.

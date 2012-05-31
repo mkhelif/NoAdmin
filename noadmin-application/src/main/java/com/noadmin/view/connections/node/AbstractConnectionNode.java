@@ -28,7 +28,7 @@ public abstract class AbstractConnectionNode<T extends Connection> extends Abstr
 	 */
 	public AbstractConnectionNode(final T connection) {
 		super(connection);
-		icon = new CompoundIcon(manager.getIcon("connection"));
+		icon = new CompoundIcon(loadIcon("connection"));
 
 		// Register events listener :
 		connection.addConnectionListener(this);
@@ -61,10 +61,10 @@ public abstract class AbstractConnectionNode<T extends Connection> extends Abstr
 
 	/**
 	 * The connection has failed to connect to the database server.
-	 * @param t the received exception.
+	 * @param e the received exception.
 	 */
-	public final void connectionFailed(final Throwable t) {
-		icon.setTick(manager.getIcon("tick.warning"));
+	public final void connectionFailed(final Exception e) {
+		icon.setTick(loadIcon("tick.warning"));
 		this.elementUpdated();
 	}
 
@@ -72,7 +72,7 @@ public abstract class AbstractConnectionNode<T extends Connection> extends Abstr
 	 * The connection is trying to establish.
 	 */
 	public final void connectionEstablishing() {
-		icon.setTick(manager.getIcon("tick.refresh"));
+		icon.setTick(loadIcon("tick.refresh"));
 		this.elementUpdated();
 	}
 
@@ -80,7 +80,7 @@ public abstract class AbstractConnectionNode<T extends Connection> extends Abstr
 	 * The connection has been established.
 	 */
 	public void connectionEstablished() {
-		icon.setTick(manager.getIcon("tick.green"));
+		icon.setTick(loadIcon("tick.green"));
 		this.elementUpdated();
 	}
 
@@ -88,7 +88,7 @@ public abstract class AbstractConnectionNode<T extends Connection> extends Abstr
 	 * The connection is closing.
 	 */
 	public final void connectionClosing() {
-		icon.setTick(manager.getIcon("tick.refresh"));
+		icon.setTick(loadIcon("tick.refresh"));
 		this.elementUpdated();
 	}
 

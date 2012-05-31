@@ -36,7 +36,7 @@ public final class Controller {
 		if (Controller.instance == null) {
 			Controller.instance = this;
 		} else {
-			throw new RuntimeException("Application bootstrap already loaded.");
+			throw new IllegalStateException("Application bootstrap already loaded.");
 		}
 	}
 
@@ -56,7 +56,6 @@ public final class Controller {
 		for (final Service service : services) {
 			service.stopService();
 		}
-		System.exit(0);
 	}
 
 	/**
@@ -64,7 +63,7 @@ public final class Controller {
 	 */
 	public void setContext(final ApplicationContext context) {
 		if (this.context != null) {
-			throw new RuntimeException("Application context already loaded.");
+			throw new IllegalStateException("Application context already loaded.");
 		}
 		this.context = context;
 	}

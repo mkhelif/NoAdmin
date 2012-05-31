@@ -12,61 +12,85 @@ import com.noadmin.view.beans.DefaultMessageSource;
  */
 public final class ConnectionConfigurationTableModel extends DefaultTableModel {
 
-	private final DefaultMessageSource i18n;
+	/**
+	 * The headers of the columns.
+	 */
+	private final String[] headers = new String[2];
 
+	/**
+	 * The name of the options displayed in the table.
+	 */
+	private final String[] infos = new String[13];
+
+	/**
+	 * The MongoDB options to display.
+	 */
 	private MongoOptions options;
 
 	public ConnectionConfigurationTableModel() {
-		this.i18n = new DefaultMessageSource("mongodb");
+		final DefaultMessageSource i18n = new DefaultMessageSource("mongodb");
+
+		// Load columns headers
+		headers[0] = i18n.getMessage("mongodb.connection.options.label");
+		headers[1] = i18n.getMessage("mongodb.connection.options.value");
+
+		// Load options names
+		infos[0] = "Auto-connect retry";
+		infos[1] = "Max auto-connect retry time";
+		infos[2] = "Connections per host";
+		infos[3] = "Connect Timeout";
+		infos[4] = "Description";
+		infos[5] = "FSync";
+		infos[6] = "Max wait time";
+		infos[7] = "Safe";
+		infos[8] = "Socket Keep-Alive";
+		infos[9] = "Socket timeout";
+		infos[10] = "Threads allowed to block";
+		infos[11] = "Slaves write behavior";
+		infos[12] = "Slaves write timeout";
 	}
 
+	/**
+	 * @see javax.swing.table.DefaultTableModel#getRowCount()
+	 */
 	@Override
 	public int getRowCount() {
-		return options == null ? 0 : 13;
+		return (options == null ? 0 : infos.length);
 	}
 
+	/**
+	 * @see javax.swing.table.DefaultTableModel#getColumnCount()
+	 */
 	@Override
 	public int getColumnCount() {
-		return 2;
+		return headers.length;
 	}
 
+	/**
+	 * @see javax.swing.table.DefaultTableModel#getColumnName(int)
+	 */
 	@Override
 	public String getColumnName(final int column) {
-		switch (column) {
-			case 0: return i18n("mongodb.connection.options.label");
-			case 1: return i18n("mongodb.connection.options.value");
-			default: return null;
-		}
+		return headers[column];
 	}
 
+	/**
+	 * @see javax.swing.table.DefaultTableModel#getValueAt(int, int)
+	 */
 	@Override
 	public Object getValueAt(final int row, final int column) {
 		switch (column) {
-			case 0: return this.getOptionKey(row);
+			case 0: return infos[row];
 			case 1: return this.getOptionValue(row);
 			default: return null;
 		}
 	}
 
-	private String getOptionKey(final int row) {
-		switch (row) {
-			case 0: return "Auto-connect retry";
-			case 1: return "Max auto-connect retry time";
-			case 2: return "Connections per host";
-			case 3: return "Connect Timeout";
-			case 4: return "Description";
-			case 5: return "FSync";
-			case 6: return "Max wait time";
-			case 7: return "Safe";
-			case 8: return "Socket Keep-Alive";
-			case 9: return "Socket timeout";
-			case 10: return "Threads allowed to block";
-			case 11: return "Slaves write behavior";
-			case 12: return "Slaves write timeout";
-			default: return null;
-		}
-	}
-
+	/**
+	 * Retrieve the value of an option.
+	 * @param row the row of the option.
+	 * @return the value of the MongoDB option.
+	 */
 	private Object getOptionValue(final int row) {
 		switch (row) {
 			case 0: return options.autoConnectRetry;
@@ -86,22 +110,20 @@ public final class ConnectionConfigurationTableModel extends DefaultTableModel {
 		}
 	}
 
+	/**
+	 * @see javax.swing.table.DefaultTableModel#isCellEditable(int, int)
+	 */
 	@Override
 	public boolean isCellEditable(final int row, final int column) {
 		return false;
 	}
 
+	/**
+	 * Update the informations displayed in the table.
+	 * @param options the MongoDB options to display.
+	 */
 	public void setContent(final MongoOptions options) {
 		this.options = options;
 		this.fireTableDataChanged();
-	}
-
-	/**
-	 * Get the translation value of the key.
-	 * @param key the key of the translation.
-	 * @return the translation string.
-	 */
-	protected final String i18n(final String key) {
-		return i18n.getMessage(key);
 	}
 }

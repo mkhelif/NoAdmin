@@ -4,6 +4,7 @@ import javax.swing.Icon;
 import javax.swing.JPopupMenu;
 
 import com.mongodb.DB;
+import com.noadmin.mongodb.actions.AddCollectionAction;
 import com.noadmin.mongodb.model.Collection;
 import com.noadmin.view.connections.node.AbstractNode;
 
@@ -37,7 +38,7 @@ public final class DBNode extends AbstractNode<DB> {
 	 */
 	@Override
 	public void addMenuItems(final JPopupMenu menu) {
-		//menu.add(AddCollectionAction.getInstance());
+		menu.add(AddCollectionAction.getInstance());
 		menu.addSeparator();
 
 		super.addMenuItems(menu);
@@ -48,7 +49,7 @@ public final class DBNode extends AbstractNode<DB> {
 	 * @return the label of the node.
 	 */
 	@Override
-	public final String getLabel() {
+	public String getLabel() {
 		return getUserObject().getName();
 	}
 
@@ -56,7 +57,7 @@ public final class DBNode extends AbstractNode<DB> {
 	 * @return the icon to display for this node.
 	 */
 	@Override
-	public final Icon getIcon() {
-		return manager.getIcon("database");
+	public Icon getIcon() {
+		return loadIcon("database");
 	}
 }

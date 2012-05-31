@@ -70,7 +70,7 @@ public final class ConnectionsNode extends AbstractNode<ConfigurationManager> im
 	 * in the tree.
 	 * @param connection the new connection.
 	 */
-	public final void connectionAdded(final Connection connection) {
+	public void connectionAdded(final Connection connection) {
 		this.add(factory.newConnectionNode(connection));
 		if (this.getChildCount() == 1) {
 			getModel().nodeStructureChanged(this);
@@ -84,7 +84,7 @@ public final class ConnectionsNode extends AbstractNode<ConfigurationManager> im
 	 * A connection has been removed from the configuration.
 	 * @param connection the removed connection.
 	 */
-	public final void connectionRemoved(final Connection connection) {
+	public void connectionRemoved(final Connection connection) {
 		AbstractNode<?> node = null;
 		int index = -1;
 		for (int i = 0 ; i < this.getChildCount() ; i++) {

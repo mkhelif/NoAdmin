@@ -9,14 +9,14 @@ import org.apache.commons.lang.StringUtils;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 
 import com.noadmin.controller.Controller;
-import com.noadmin.mongodb.model.Collection;
 import com.noadmin.mongodb.model.DBObject;
 import com.noadmin.mongodb.model.DBObjectList;
 import com.noadmin.mongodb.model.DBReference;
 import com.noadmin.view.beans.IconManager;
 
 /**
- * Renderer of the {@link Collection} tree..
+ * Renderer of the collection tree.
+ * This renderer is able to render any kind of MongoDB element.
  *
  * @author mkhelif
  */

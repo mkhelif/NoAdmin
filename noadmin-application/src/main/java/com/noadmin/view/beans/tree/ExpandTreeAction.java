@@ -18,7 +18,10 @@ import com.noadmin.view.actions.DefaultAction;
  */
 public final class ExpandTreeAction extends DefaultAction {
 
-	private static Map<Object, ExpandTreeAction> INSTANCES = new HashMap<>();
+	/**
+	 * Map of action instances by tree.
+	 */
+	private static final Map<Object, ExpandTreeAction> INSTANCES = new HashMap<>();
 
 	public static ExpandTreeAction getInstance(final JTree tree) {
 		if (!INSTANCES.containsKey(tree)) {

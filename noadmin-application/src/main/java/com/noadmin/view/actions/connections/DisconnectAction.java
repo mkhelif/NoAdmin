@@ -15,8 +15,8 @@ public final class DisconnectAction extends AbstractConnectionAction {
 	/**
 	 * Singleton pattern.
 	 */
-	private static final DisconnectAction action = new DisconnectAction();
-	public static DisconnectAction getInstance() { return action; }
+	private static final DisconnectAction INSTANCE = new DisconnectAction();
+	public static DisconnectAction getInstance() { return INSTANCE; }
 
 	private DisconnectAction() {
 		super("action.connection.disconnect", "connection;disconnect");
@@ -27,7 +27,7 @@ public final class DisconnectAction extends AbstractConnectionAction {
      * @param evt the issued event.
      */
 	@Override
-	public final void actionPerformed(final ActionEvent evt) {
+	public void actionPerformed(final ActionEvent evt) {
 		new Thread() {
 			@Override
 			public void run() {
@@ -58,8 +58,8 @@ public final class DisconnectAction extends AbstractConnectionAction {
 	 */
 	@Override
 	public void connectionClosing() {
-		handler.cursor(Cursor.WAIT_CURSOR);
-		handler.information("action.connection.disconnect.start");
+		getGUIHandler().cursor(Cursor.WAIT_CURSOR);
+		getGUIHandler().information("action.connection.disconnect.start");
 	}
 
 	/**
@@ -67,8 +67,8 @@ public final class DisconnectAction extends AbstractConnectionAction {
 	 */
 	@Override
 	public void connectionClosed() {
-		handler.information("action.connection.disconnect.done");
-		handler.cursor(Cursor.DEFAULT_CURSOR);
+		getGUIHandler().information("action.connection.disconnect.done");
+		getGUIHandler().cursor(Cursor.DEFAULT_CURSOR);
 		this.setEnabled(false);
 	}
 }

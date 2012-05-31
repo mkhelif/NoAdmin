@@ -13,13 +13,13 @@ import com.noadmin.view.connections.ConnectionDialog;
  *
  * @author mkhelif
  */
-public class AddConnectionAction extends DefaultAction {
+public final class AddConnectionAction extends DefaultAction {
 
 	/**
 	 * Singleton pattern.
 	 */
-	private static final AddConnectionAction action = new AddConnectionAction();
-	public static AddConnectionAction getInstance() { return action; }
+	private static final AddConnectionAction INSTANCE = new AddConnectionAction();
+	public static AddConnectionAction getInstance() { return INSTANCE; }
 
 	private AddConnectionAction() {
 		super("action.connection.add", "connection;add");

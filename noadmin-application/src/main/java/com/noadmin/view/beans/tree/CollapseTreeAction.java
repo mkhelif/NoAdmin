@@ -19,7 +19,10 @@ import com.noadmin.view.actions.DefaultAction;
  */
 public final class CollapseTreeAction extends DefaultAction {
 
-	private static Map<Object, CollapseTreeAction> INSTANCES = new HashMap<>();
+	/**
+	 * Map of action instances by tree.
+	 */
+	private static final Map<Object, CollapseTreeAction> INSTANCES = new HashMap<>();
 
 	public static CollapseTreeAction getInstance(final JTree tree) {
 		if (!INSTANCES.containsKey(tree)) {

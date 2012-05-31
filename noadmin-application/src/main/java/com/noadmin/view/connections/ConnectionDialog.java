@@ -56,14 +56,14 @@ public final class ConnectionDialog extends SimpleDialog {
 		this.factory = factory;
 
 		// Fill the connection types
-		for (final String type : factory.getConnectionTypes()) {
-			this.type.addItem(type);
+		for (final String availableType : factory.getConnectionTypes()) {
+			type.addItem(availableType);
 		}
 
 		// Dialog settings
-		this.setInfosTitle(i18n.getMessage("connection.add.header.title"));
-		this.setInfo(i18n.getMessage("connection.add.header.info"));
-		this.setTitle(i18n.getMessage("connection.add.title"));
+		this.setInfosTitle(i18n("connection.add.header.title"));
+		this.setInfo(i18n("connection.add.header.info"));
+		this.setTitle(i18n("connection.add.title"));
 		this.setModal(true);
 		this.pack();
 		this.setLocationRelativeTo(workbench);
@@ -92,7 +92,7 @@ public final class ConnectionDialog extends SimpleDialog {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.insets = new Insets(5, 5, 5, 5);
-		content.add(new JLabel(i18n.getMessage("connection.type")), c);
+		content.add(new JLabel(i18n("connection.type")), c);
 
 		c.gridx = 1;
 		c.gridy = 1;
@@ -108,7 +108,7 @@ public final class ConnectionDialog extends SimpleDialog {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.insets = new Insets(5, 5, 5, 5);
-		content.add(new JLabel(i18n.getMessage("connection.name")), c);
+		content.add(new JLabel(i18n("connection.name")), c);
 
 		c.gridx = 1;
 		c.gridy = 2;
@@ -124,7 +124,7 @@ public final class ConnectionDialog extends SimpleDialog {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.insets = new Insets(5, 5, 5, 5);
-		content.add(new JLabel(i18n.getMessage("connection.hostname")), c);
+		content.add(new JLabel(i18n("connection.hostname")), c);
 
 		c.gridx = 1;
 		c.gridy = 3;
@@ -140,7 +140,7 @@ public final class ConnectionDialog extends SimpleDialog {
 		c.weighty = 0;
 		c.gridwidth = 1;
 		c.insets = new Insets(5, 5, 5, 5);
-		content.add(new JLabel(i18n.getMessage("connection.port")), c);
+		content.add(new JLabel(i18n("connection.port")), c);
 
 		c.gridx = 1;
 		c.gridy = 4;

@@ -21,10 +21,10 @@ public abstract class AbstractMongoDBAction extends DefaultAction {
 	}
 
 	/**
-	 * @see com.noadmin.view.actions.DefaultAction#i18n(java.lang.String)
+	 * @see com.noadmin.view.actions.DefaultAction#i18n(java.lang.String, java.lang.Object...)
 	 */
 	@Override
-	protected String i18n(final String key, final Object... parameters) {
+	protected final String i18n(final String key, final Object... parameters) {
 		if (i18n == null) {
 			i18n = new DefaultMessageSource("mongodb");
 		}

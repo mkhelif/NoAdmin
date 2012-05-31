@@ -65,8 +65,8 @@ public final class CollectionTreeModel extends DefaultTreeTableModel {
 			case 0: return MongoDBElement.class;
 			case 1: return Object.class;
 			case 2: return Class.class;
+			default: return null;
 		}
-		return null;
 	}
 
 	/**
@@ -78,8 +78,8 @@ public final class CollectionTreeModel extends DefaultTreeTableModel {
 			case 0: return i18n.getMessage("mongodb.document.name");
 			case 1: return i18n.getMessage("mongodb.document.value");
 			case 2: return i18n.getMessage("mongodb.document.type");
+			default: return null;
 		}
-		return null;
 	}
 
 	/**
@@ -97,8 +97,8 @@ public final class CollectionTreeModel extends DefaultTreeTableModel {
 					return null;
 				}
 				return value.getClass();
+			default: return null;
 		}
-		return null;
 	}
 
 	/**
@@ -205,7 +205,7 @@ public final class CollectionTreeModel extends DefaultTreeTableModel {
 			if (((DBObject) value).getRoot() == value) {
 				return false;
 			}
-			if (column == 1) {
+			if (column > 0) {
 				return false;
 			}
 		}

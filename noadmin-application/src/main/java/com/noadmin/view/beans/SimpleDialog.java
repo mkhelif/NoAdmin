@@ -30,7 +30,7 @@ public abstract class SimpleDialog extends JDialog {
 	/**
 	 * The internationalization messages manager.
 	 */
-	protected final DefaultMessageSource i18n;
+	private final DefaultMessageSource i18n;
 
 	/**
 	 * Top informations panel.
@@ -129,7 +129,7 @@ public abstract class SimpleDialog extends JDialog {
 	 */
 	private JButton getOk() {
 		if (ok == null) {
-			ok = new JButton(i18n.getMessage("ok"));
+			ok = new JButton(i18n("ok"));
 			ok.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent evt) {
@@ -157,7 +157,7 @@ public abstract class SimpleDialog extends JDialog {
 			};
 
 			cancel = new JButton(action);
-			cancel.setText(i18n.getMessage("cancel"));
+			cancel.setText(i18n("cancel"));
 
 			// Register as default escape button :
 			final KeyStroke escapeKey = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
@@ -165,5 +165,14 @@ public abstract class SimpleDialog extends JDialog {
 			this.getRootPane().getActionMap().put("CANCEL_ACTION_KEY", action);
 		}
 		return cancel;
+	}
+
+	/**
+	 * Retrieve localization for the key.
+	 * @param key the code of the localized message.
+	 * @return the localized message.
+	 */
+	protected final String i18n(final String key) {
+		return i18n.getMessage(key);
 	}
 }

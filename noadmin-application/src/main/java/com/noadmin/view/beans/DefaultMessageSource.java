@@ -26,7 +26,7 @@ public final class DefaultMessageSource extends ReloadableResourceBundleMessageS
 	 * Resolves the given message code as key in the retrieved bundle files,
 	 * @returns the value found in the bundle as-is (without MessageFormat parsing).
 	 */
-	public final String getMessage(final String code) {
+	public String getMessage(final String code) {
 		return resolveCodeWithoutArguments(code, Locale.getDefault());
 	}
 
@@ -38,7 +38,7 @@ public final class DefaultMessageSource extends ReloadableResourceBundleMessageS
 	 *        or <code>null</code> if none.
 	 * @return the resolved message if the lookup was successful.
 	 */
-	public final String getMessage(final String code, final Object... args) {
+	public String getMessage(final String code, final Object... args) {
 		return getMessage(code, args, Locale.getDefault());
 	}
 }

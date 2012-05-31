@@ -20,7 +20,7 @@ public abstract class AbstractConnectionPanel<C extends Connection> extends Abst
 	/**
 	 * The displayed connection.
 	 */
-	protected C connection;
+	private C connection;
 
 	public AbstractConnectionPanel(final String i18n) {
 		super(i18n);
@@ -68,6 +68,14 @@ public abstract class AbstractConnectionPanel<C extends Connection> extends Abst
 	}
 
 	/**
+	 * Retrieve the currently displayed connection.
+	 * @return the displayed connection or null.
+	 */
+	public C getConnection() {
+		return connection;
+	}
+
+	/**
 	 * Update the informations displayed in the panel.
 	 */
 	protected abstract void update();
@@ -76,7 +84,7 @@ public abstract class AbstractConnectionPanel<C extends Connection> extends Abst
 	 * The connection has failed to connect to the database server.
 	 * @param e the received exception.
 	 */
-	public void connectionFailed(final Throwable t) {
+	public void connectionFailed(final Exception e) {
 		// TODO display the error message.
 	}
 

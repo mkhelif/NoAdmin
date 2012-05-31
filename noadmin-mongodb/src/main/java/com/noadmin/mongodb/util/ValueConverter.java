@@ -9,6 +9,7 @@ import com.mongodb.DBObject;
  * @author mkhelif
  */
 public final class ValueConverter {
+	private ValueConverter() {}
 
 	/**
 	 * Convert an object to the type.

@@ -16,14 +16,17 @@ public final class RemoveConnectionAction extends AbstractConnectionAction {
 	/**
 	 * Singleton pattern.
 	 */
-	private static final RemoveConnectionAction action = new RemoveConnectionAction();
-	public static RemoveConnectionAction getInstance() { return action; }
+	private static final RemoveConnectionAction INSTANCE = new RemoveConnectionAction();
+	public static RemoveConnectionAction getInstance() { return INSTANCE; }
 
 	private RemoveConnectionAction() {
 		super("action.remove", "connection;remove");
 		this.setEnabled(false);
 	}
 
+	/**
+	 * @see com.noadmin.view.actions.connections.AbstractConnectionAction#isEnabled(com.noadmin.model.connection.Connection)
+	 */
 	@Override
 	protected boolean isEnabled(final Connection connection) {
 		return true;
@@ -38,7 +41,7 @@ public final class RemoveConnectionAction extends AbstractConnectionAction {
 		final Connection connection = this.getConnection();
 
 		// Delete the connection:
-		if (handler.confirm(i18n("action.remove"), i18n("action.connection.remove", connection.getName()))) {
+		if (getGUIHandler().confirm(i18n("action.remove"), i18n("action.connection.remove", connection.getName()))) {
 			if (connection.isConnected()) {
 				connection.disconnect();
 			}

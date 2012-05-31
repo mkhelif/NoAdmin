@@ -15,6 +15,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.noadmin.model.ConfigurationElement;
+import com.noadmin.view.actions.connections.AddConnectionAction;
+import com.noadmin.view.actions.connections.ConnectAction;
+import com.noadmin.view.actions.connections.DisconnectAction;
+import com.noadmin.view.actions.connections.RemoveConnectionAction;
 import com.noadmin.view.connections.node.AbstractNode;
 
 /**
@@ -64,7 +68,7 @@ public final class ConnectionsTree extends JTree {
 	 * The mouse button has been released.
 	 * @param e the event of the click release.
 	 */
-	public final void mouseReleased(final MouseEvent e) {
+	public void mouseReleased(final MouseEvent e) {
 		final JPopupMenu menu = new JPopupMenu();
 
 		// Update pop-up menu with contextual actions:
@@ -75,12 +79,12 @@ public final class ConnectionsTree extends JTree {
 		}
 
 		// Default actions:
-		//menu.add(ConnectAction.getInstance().newMenu());
-		//menu.addSeparator();
-		//menu.add(AddConnectionAction.getInstance().newMenu());
-		//menu.add(DisconnectAction.getInstance().newMenu());
-		//menu.addSeparator();
-		//menu.add(RemoveConnectionAction.getInstance().newMenu());
+		menu.add(ConnectAction.getInstance().newMenu());
+		menu.addSeparator();
+		menu.add(AddConnectionAction.getInstance().newMenu());
+		menu.add(DisconnectAction.getInstance().newMenu());
+		menu.addSeparator();
+		menu.add(RemoveConnectionAction.getInstance().newMenu());
 
 		// Show menu :
 		menu.show(this, e.getX(), e.getY());
@@ -92,7 +96,7 @@ public final class ConnectionsTree extends JTree {
 	 * @param type the type of element to returns.
 	 * @return the selected element of the right type or null if no selection.
 	 */
-	public final <T extends ConfigurationElement> T getSelected(final Class<T> type) {
+	public <T extends ConfigurationElement> T getSelected(final Class<T> type) {
 		// Ignore empty or multiple selections:
 		final TreePath[] paths = this.getSelectionPaths();
 		if (paths == null || paths.length != 1) {

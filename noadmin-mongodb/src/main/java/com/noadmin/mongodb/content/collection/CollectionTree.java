@@ -1,7 +1,5 @@
 package com.noadmin.mongodb.content.collection;
 
-import org.jdesktop.swingx.JXTreeTable;
-
 import com.noadmin.mongodb.model.Collection;
 import com.noadmin.mongodb.model.MongoDBElement;
 import com.noadmin.view.beans.ListSelectionModel;
@@ -9,7 +7,7 @@ import com.noadmin.view.beans.tree.ClassTableEditor;
 import com.noadmin.view.beans.tree.JTreeTable;
 
 /**
- * The {@link JXTreeTable} that displays collections data.
+ * The {@link JTreeTable} that displays collections data.
  *
  * @author mkhelif
  */
@@ -27,16 +25,10 @@ public final class CollectionTree extends JTreeTable {
 	 */
 	private final CollectionTreeModel model;
 
-	/**
-	 * The listener of the {@link Collection} and documents events.
-	 */
-	private final CollectionTreeListener listener;
-
 	public CollectionTree() {
 		super(new CollectionTreeModel());
 		this.model = (CollectionTreeModel) this.getTreeTableModel();
-		this.listener = new CollectionTreeListener(this, model);
-		this.model.setListener(listener);
+		this.model.setListener(new CollectionTreeListener(this, model));
 
 		this.setTreeCellRenderer(new CollectionTableObjectRenderer());
 		this.setDefaultRenderer(Class.class, new CollectionTableClassRenderer());

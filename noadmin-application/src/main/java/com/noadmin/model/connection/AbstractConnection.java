@@ -37,6 +37,7 @@ public abstract class AbstractConnection extends AbstractConfigurationElement im
 	private boolean connected = false;
 
 	protected AbstractConnection() {
+		super();
 		listeners = new ArrayList<ConnectionListener>();
 	}
 
@@ -49,9 +50,9 @@ public abstract class AbstractConnection extends AbstractConfigurationElement im
 			this.doConnect();
 			this.connected = true;
 			this.fireConnectionEstablished();
-		} catch (final Throwable t) {
+		} catch (final Exception e) {
 			this.connected = false;
-			this.fireConnectionFailed(t);
+			this.fireConnectionFailed(e);
 		}
 	}
 
@@ -141,11 +142,11 @@ public abstract class AbstractConnection extends AbstractConfigurationElement im
 
 	/**
 	 * Fire the "connectionFailed" event to all the listeners.
-	 * @param t the exception that issues this event.
+	 * @param e the exception that issues this event.
 	 */
-	private void fireConnectionFailed(final Throwable t) {
+	private void fireConnectionFailed(final Exception e) {
 		for (final ConnectionListener listener : listeners) {
-			listener.connectionFailed(t);
+			listener.connectionFailed(e);
 		}
 	}
 

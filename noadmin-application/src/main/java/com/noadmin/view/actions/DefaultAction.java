@@ -68,7 +68,7 @@ public abstract class DefaultAction extends AbstractAction {
 	 * @param key the key of the icon: <path>;<tick>
 	 * @return the image.
 	 */
-	private final Icon getIcon(final String key) {
+	private Icon getIcon(final String key) {
 		final int index = key.indexOf(';');
 		if (index != -1) {
 			return new CompoundIcon(
@@ -84,7 +84,7 @@ public abstract class DefaultAction extends AbstractAction {
 	 * @param key the key of the icon: <path>;<tick>
 	 * @return the disabled version of the icon.
 	 */
-	private final Icon getDisabledIcon(final String key) {
+	private Icon getDisabledIcon(final String key) {
 		final int index = key.indexOf(';');
 		if (index != -1) {
 			return new CompoundIcon(
@@ -118,6 +118,12 @@ public abstract class DefaultAction extends AbstractAction {
 		return button;
 	}
 
+	/**
+	 * Retrieve the localized message from the key and parameters.
+	 * @param key the key of the localized message.
+	 * @param parameters the parameters to inject in the message.
+	 * @return the localized message.
+	 */
 	protected String i18n(final String key, final Object... parameters) {
 		return i18n.getMessage(key, parameters);
 	}

@@ -39,7 +39,7 @@ public final class ConfigurationManager implements Service {
 	private static final File CONFIGURATION_FILE = new File("connections.xml");
 
 	/**
-	 * URL of the configuation rules (from the JAR file).
+	 * URL of the configuration rules (from the JAR file).
 	 */
 	private static final URL CONFIGURATION_RULES = ConfigurationManager.class.getResource("configuration-rules.xml");
 
@@ -67,8 +67,8 @@ public final class ConfigurationManager implements Service {
 		if (CONFIGURATION_FILE.exists()) {
 			final Digester digester = DigesterLoader.createDigester(CONFIGURATION_RULES);
 			try {
-				final List<Connection> connections = (List<Connection>) digester.parse(CONFIGURATION_FILE);
-				for (final Connection connection : connections) {
+				final List<Connection> loadedConnections = (List<Connection>) digester.parse(CONFIGURATION_FILE);
+				for (final Connection connection : loadedConnections) {
 					this.addConnection(connection);
 				}
 			} catch (final Exception e) {

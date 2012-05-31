@@ -15,7 +15,7 @@ public interface Connection extends ConfigurationElement {
 	/**
 	 * Logger for connection.
 	 */
-	static final Logger LOG = Logger.getLogger(LoggingManager.CONNECTION);
+	Logger LOG = Logger.getLogger(LoggingManager.CONNECTION);
 
 	/**
 	 * Establish the connection to the database.

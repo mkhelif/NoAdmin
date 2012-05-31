@@ -3,7 +3,7 @@ package com.noadmin.mongodb.node;
 import javax.swing.Icon;
 import javax.swing.JPopupMenu;
 
-import com.mongodb.DBCollection;
+import com.noadmin.mongodb.actions.RefreshCollectionAction;
 import com.noadmin.mongodb.model.Collection;
 import com.noadmin.view.connections.node.AbstractNode;
 
@@ -16,7 +16,7 @@ public final class CollectionNode extends AbstractNode<Collection> {
 
 	/**
 	 * Create a new collection node for the collection.
-	 * @param collection the {@link DBCollection} to display.
+	 * @param collection the {@link Collection} to display.
 	 */
 	public CollectionNode(final Collection collection) {
 		super(collection);
@@ -30,8 +30,7 @@ public final class CollectionNode extends AbstractNode<Collection> {
 	@Override
 	public void addMenuItems(final JPopupMenu menu) {
 		super.addMenuItems(menu);
-
-		// TODO menu.add(RefreshCollectionAction.getInstance());
+		menu.add(RefreshCollectionAction.getInstance());
 	}
 
 	/**
@@ -39,7 +38,7 @@ public final class CollectionNode extends AbstractNode<Collection> {
 	 * @return the label of the node.
 	 */
 	@Override
-	public final String getLabel() {
+	public String getLabel() {
 		return getUserObject().getName();
 	}
 
@@ -47,7 +46,7 @@ public final class CollectionNode extends AbstractNode<Collection> {
 	 * @return the icon to display for this node.
 	 */
 	@Override
-	public final Icon getIcon() {
-		return manager.getIcon("collection");
+	public Icon getIcon() {
+		return loadIcon("collection");
 	}
 }

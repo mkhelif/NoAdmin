@@ -14,8 +14,8 @@ public final class ExitAction extends DefaultAction {
 	/**
 	 * Singleton pattern.
 	 */
-	private static final ExitAction action = new ExitAction();
-	public static ExitAction getInstance() { return action; }
+	private static final ExitAction INSTANCE = new ExitAction();
+	public static ExitAction getInstance() { return INSTANCE; }
 
 	private ExitAction() {
 		super("action.exit");
